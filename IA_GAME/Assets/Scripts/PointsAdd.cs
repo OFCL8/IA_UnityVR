@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PointsAdd : MonoBehaviour
 {
@@ -52,6 +53,14 @@ public class PointsAdd : MonoBehaviour
                 {
                     //ganaste
                     Debug.Log("Ganaste");
+                    Scene CurrentScene = SceneManager.GetActiveScene();
+                    if(CurrentScene.name == "Nivel1")
+                    { SceneManager.LoadScene("Nivel2"); }
+                    else if(CurrentScene.name == "Nivel2")
+                    { SceneManager.LoadScene("Nivel3"); }
+                    else if (CurrentScene.name == "Nivel3")
+                    { SceneManager.LoadScene("Nivel4"); }
+                        
                 }
             }            
         }
