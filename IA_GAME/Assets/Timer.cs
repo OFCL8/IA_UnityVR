@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     public static Timer Instance;
 
-    float duracionDelNivel =5;
+    float duracionDelNivel =21;
     public int intentosFallidos = 0;
     public float timecurrent;
 
@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        duracionDelNivel = 5;
+        duracionDelNivel = 21;
         timecurrent = 0;
     }
 

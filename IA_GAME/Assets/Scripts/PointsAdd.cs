@@ -52,7 +52,7 @@ public class PointsAdd : MonoBehaviour
                 if (timeCurrent >= totalTime)
                 {
                     //ganaste
-                    Debug.Log("Ganaste");
+                    
                     Scene CurrentScene = SceneManager.GetActiveScene();
                     if(CurrentScene.name == "Nivel1")
                     { SceneManager.LoadScene("Nivel2"); }
