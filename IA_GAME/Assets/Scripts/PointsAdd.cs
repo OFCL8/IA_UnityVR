@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PointsAdd : MonoBehaviour
 {
@@ -10,10 +11,7 @@ public class PointsAdd : MonoBehaviour
     public Material mExit;
     Renderer myRender;
 
-    public GameObject[] figura;
-
-    public Transform[] spawnPoints;
-
+    public bool figuraGanadora;
     public float totalTime;
     float timeCurrent;
     bool isEnable;
@@ -23,7 +21,7 @@ public class PointsAdd : MonoBehaviour
     {
         myRender = GetComponent<Renderer>();
         myRender.enabled = true;
-        myRender.sharedMaterial = mExit;
+        
     }
 
     public void OnPointerEnter()
@@ -49,25 +47,27 @@ public class PointsAdd : MonoBehaviour
         if (isEnable)
         {
             timeCurrent += Time.deltaTime;
-            if (timeCurrent >= totalTime)
-            {
-                isEnable = false;
-                //Debug.Log("TIME!");
-                //int n = Random.Range(0, figura.Length-1);
-                //Debug.Log("" + n);
-                Destruction();
-            }
+            if (figuraGanadora)
+            {                
+                if (timeCurrent >= totalTime)
+                {
+                    //ganaste
+                    
+                    Scene CurrentScene = SceneManager.GetActiveScene();
+                    if(CurrentScene.name == "Nivel1")
+                    { SceneManager.LoadScene("Nivel2"); }
+                    else if(CurrentScene.name == "Nivel2")
+                    { SceneManager.LoadScene("Nivel3"); }
+                    else if (CurrentScene.name == "Nivel3")
+                    { SceneManager.LoadScene("Nivel4"); }
+                        
+                }
+            }            
         }
     }
 
     private void Destruction()
     {
-        spawnIndex = Random.Range(0, spawnPoints.Length);
-
-        int n = Random.Range(0, figura.Length);
-        Debug.Log("" + n);
-        Instantiate(figura[n],spawnPoints[spawnIndex].position,spawnPoints[spawnIndex].rotation);
-
-        Destroy(this.gameObject);
+        
     }
 }
